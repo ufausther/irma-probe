@@ -40,15 +40,13 @@ class ArmaditoPDF(object):
 	def run_cmd(cmd):		
 		# remove whitespace with re.sub, then split()
 		re.sub(r'\s+', ' ', cmd)
-        cmdarray = cmd.split()
-        # execute command with popen, clean up outputs
-        pd = Popen(cmdarray, stdout=PIPE, stderr=PIPE)
-        raw_stdout, stderr = map(lambda x: x.strip() if x.strip() else None, pd.communicate())
-
+		cmdarray = cmd.split()
+		# execute command with popen, clean up outputs
+		pd = Popen(cmdarray, stdout=PIPE, stderr=PIPE)
+		raw_stdout, stderr = map(lambda x: x.strip() if x.strip() else None, pd.communicate())
 		retcode = pd.returncode
-
 		stdout = raw_stdout
-		print"retcode = ", retcode
+
 		# return tuple (retcode, out, err)
 		return (retcode, stdout, stderr)
 
